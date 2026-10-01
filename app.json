@@ -1,0 +1,83 @@
+{
+  "expo": {
+    "name": "Poground",
+    "slug": "poground",
+    "scheme": ["poground", "steelers"],
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "bundleIdentifier": "com.poground.app",
+      "supportsTablet": false,
+      "appleTeamId": "M45QFAAT7S",
+      "infoPlist": {}
+    },
+    "android": {
+      "package": "com.poground.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon/adaptive-foreground.png",
+        "backgroundColor": "#FB342E"
+      },
+      "blockedPermissions": ["android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR"]
+    },
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/icon/splash-mark.png",
+          "imageWidth": 220,
+          "resizeMode": "contain",
+          "backgroundColor": "#FB342E",
+          "dark": {
+            "image": "./assets/icon/splash-mark.png",
+            "backgroundColor": "#FB342E"
+          }
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/GmarketSansTTFMedium.ttf", "./assets/fonts/GmarketSansTTFBold.ttf"]
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "팬카드, 커뮤니티 글, 선수 사진, 프로필 이미지에 넣을 사진을 고르기 위해 사진 접근이 필요합니다.",
+          "cameraPermission": false,
+          "microphonePermission": false
+        }
+      ],
+      "expo-web-browser",
+      "expo-image",
+      "./plugins/withoutAppleSignIn",
+      "./plugins/withKoreanDisplayName",
+      "expo-sharing",
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "경기 일정을 캘린더에 넣을 때 캘린더 화면을 열기 위해 필요합니다. 앱이 캘린더를 읽지 않습니다.",
+          "remindersPermission": "포그라운드는 미리 알림을 읽거나 쓰지 않습니다."
+        }
+      ],
+      "./plugins/withoutPushEntitlement",
+      [
+        "expo-notifications",
+        {
+          "color": "#FB342E"
+        }
+      ],
+      [
+        "@use-voltra/ios-client",
+        {
+          "deploymentTarget": "16.4"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}

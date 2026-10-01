@@ -1,0 +1,20 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    // 안 쓰는 변수·임포트를 여기서 잡는다. 파일을 쪼개고 옮길 때 임포트가 그대로 남는데,
+    // 잡아 주는 것이 없어 CardMakerScreen 한 파일에만 열몇 개가 쌓여 있었다.
+    // 안 쓰는 인자는 이름 앞에 _ 를 붙이면 통과한다 (콜백 자리 맞추기용)
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@assets/*": ["assets/*"]
+    }
+  },
+  "include": ["src/**/*", "index.js", "__tests__/**/*"],
+  "exclude": ["node_modules", "supabase", "scripts"]
+}

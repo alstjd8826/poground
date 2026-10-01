@@ -1,0 +1,16 @@
+node_modules
+ios
+android
+.expo
+dist
+coverage
+
+# Deno 쪽은 손대지 않는다. 규칙이 달라서(세미콜론 등) 여기 규칙을 씌우면 통째로 갈리고,
+# 그쪽은 deno fmt 가 맡는 자리다
+supabase
+scripts
+deno.json
+deno.lock
+
+# 작업 계획 도구의 임시 기록. 저장소에 올라가지 않는다
+.superpowers

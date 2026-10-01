@@ -1,0 +1,26 @@
+{
+  "tasks": {
+    "verify": "deno run --allow-net scripts/verify.ts",
+    "dry-run": "deno run --allow-net --allow-env scripts/dry-run-collectors.ts",
+    "test": "deno test --allow-net --allow-read supabase/functions/_shared/kleague/",
+    "check": "deno check supabase/functions/collect-*/index.ts scripts/*.ts",
+    "check-db": "deno run --allow-net --allow-read scripts/check-supabase.ts",
+    "sql-check": "deno run -A --node-modules-dir=none ./supabase/tests/run.ts"
+  },
+  "fmt": {
+    "lineWidth": 110,
+    "exclude": [
+      "node_modules",
+      "ios",
+      "android"
+    ]
+  },
+  "lint": {
+    "exclude": [
+      "node_modules",
+      "ios",
+      "android",
+      "src"
+    ]
+  }
+}
