@@ -3,19 +3,24 @@
     "name": "Poground",
     "slug": "poground",
     "scheme": ["poground", "steelers"],
-    "version": "0.1.0",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon/icon.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "bundleIdentifier": "com.darby.poground",
+      "buildNumber": "1",
       "supportsTablet": false,
       "appleTeamId": "M45QFAAT7S",
-      "infoPlist": {}
+      "infoPlist": {},
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.darby.poground",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon/adaptive-foreground.png",
         "backgroundColor": "#FB342E"
@@ -63,6 +68,7 @@
         }
       ],
       "./plugins/withoutPushEntitlement",
+      "./plugins/withVoltraArchiveFix",
       [
         "expo-notifications",
         {

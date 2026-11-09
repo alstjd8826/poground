@@ -94,3 +94,9 @@ yarn-error.log
 
 # Supabase CLI 가 남기는 임시 파일
 supabase/.temp/
+
+# 심사 첨부 녹화 (용량이 커서 git 에 안 올린다)
+store/ios/review-demo.mp4
+
+# Python 캐시 (scripts/asc)
+__pycache__/

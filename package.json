@@ -13,6 +13,7 @@
     "test": "jest",
     "icons": "./scripts/generate-icons.sh",
     "legal": "node scripts/legal.mjs && prettier --write src/content/privacy.ts",
+    "web": "node scripts/gen-web.mjs",
     "collectors:test": "deno task test",
     "collectors:dry-run": "deno task dry-run",
     "parsers:verify": "deno task verify",
