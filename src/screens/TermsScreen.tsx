@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import Svg, { Path } from 'react-native-svg'
 
 import { fonts, spacing } from '@/styles'
 import { useTheme } from '@/hooks/theme/ThemeProvider'
@@ -36,10 +37,12 @@ export function TermsScreen({ onAgree, onDecline }: TermsScreenProps) {
   const bottomGap = useBottomSafeGap()
   const insets = useSafeAreaInsets()
   const [busy, setBusy] = useState(false)
+  /** 만 14세 이상 확인. 체크해야 동의 단추가 살아난다 */
+  const [adult, setAdult] = useState(false)
   const gate = onAgree !== undefined
 
   const agree = useCallback(async () => {
-    if (!onAgree || busy) return
+    if (!onAgree || busy || !adult) return
     setBusy(true)
     try {
       await onAgree()
@@ -48,7 +51,7 @@ export function TermsScreen({ onAgree, onDecline }: TermsScreenProps) {
     } finally {
       setBusy(false)
     }
-  }, [busy, onAgree])
+  }, [adult, busy, onAgree])
 
   return (
     <View style={[styles.root, { backgroundColor: theme.background }, gate && { paddingTop: insets.top }]}>
@@ -78,7 +81,39 @@ export function TermsScreen({ onAgree, onDecline }: TermsScreenProps) {
 
       {gate && (
         <View style={[styles.foot, { paddingBottom: insets.bottom + spacing['200'] }]}>
-          <PrimaryButton label="동의하고 계속하기" onPress={() => void agree()} busy={busy} />
+          {/*
+            만 14세 미만은 법정대리인 동의가 필요해(개인정보보호법) 글·댓글은 만 14세 이상만 받는다.
+            읽는 것은 로그인 없이 누구나 된다 (2026-11-09, Flash 와 같은 방식)
+          */}
+          <PressableScale
+            scaleTo={0.98}
+            onPress={() => setAdult(v => !v)}
+            accessibilityRole="checkbox"
+            accessibilityLabel="[필수] 만 14세 이상입니다"
+            accessibilityState={{ checked: adult }}
+            style={styles.check}
+          >
+            <View
+              style={[
+                styles.box,
+                { borderColor: adult ? theme.main : theme.border },
+                adult && { backgroundColor: theme.main },
+              ]}
+            >
+              {adult && (
+                <Svg width={14} height={14} viewBox="0 0 24 24">
+                  <Path d="M5 12.5l4.5 4.5L19 7.5" stroke={theme.textOnMain} strokeWidth={3} fill="none" />
+                </Svg>
+              )}
+            </View>
+            <Text style={[fonts.bodySmall, { color: theme.textPrimary }]}>[필수] 만 14세 이상입니다</Text>
+          </PressableScale>
+          <PrimaryButton
+            label="동의하고 계속하기"
+            onPress={() => void agree()}
+            busy={busy}
+            disabled={!adult}
+          />
           {onDecline && (
             <PressableScale
               scaleTo={0.98}
@@ -102,4 +137,13 @@ const styles = StyleSheet.create({
   section: { gap: spacing['075'] },
   foot: { paddingHorizontal: spacing['200'], paddingTop: spacing['100'] },
   escape: { alignItems: 'center', paddingVertical: spacing['200'] },
+  check: { flexDirection: 'row', alignItems: 'center', gap: spacing['100'], paddingVertical: spacing['150'] },
+  box: {
+    width: 22,
+    height: 22,
+    borderRadius: 6,
+    borderWidth: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 })

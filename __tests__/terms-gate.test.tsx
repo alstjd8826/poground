@@ -59,8 +59,17 @@ it('지금 판에 동의하지 않았으면 약관을 덮고, 동의하면 부�
   mockProfile = profile(0)
   wrap()
   expect(screen.getByText(TERMS[0]!.title)).toBeTruthy()
+  fireEvent.press(screen.getByRole('checkbox', { name: '[필수] 만 14세 이상입니다' }))
   fireEvent.press(screen.getByRole('button', { name: '동의하고 계속하기' }))
   await waitFor(() => expect(mockAgree).toHaveBeenCalled())
+})
+
+it('만 14세 이상을 체크하지 않으면 동의를 부르지 않는다', async () => {
+  mockProfile = profile(0)
+  wrap()
+  fireEvent.press(screen.getByRole('button', { name: '동의하고 계속하기' }))
+  await new Promise(r => setTimeout(r, 0))
+  expect(mockAgree).not.toHaveBeenCalled()
 })
 
 it('동의하지 않으려면 로그아웃으로 나간다 — 앱이 잠기지 않게', () => {
@@ -97,6 +106,7 @@ it('동의 저장이 실패하면 서버가 준 까닭을 그대로 보인다', 
   mockAgree.mockRejectedValueOnce({ code: '42501', message: 'permission denied for table profiles' })
   mockProfile = profile(0)
   wrap()
+  fireEvent.press(screen.getByRole('checkbox', { name: '[필수] 만 14세 이상입니다' }))
   fireEvent.press(screen.getByRole('button', { name: '동의하고 계속하기' }))
   await waitFor(() =>
     expect(alert).toHaveBeenCalledWith('동의를 저장하지 못했습니다', 'permission denied for table profiles'),
