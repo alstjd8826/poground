@@ -7,7 +7,7 @@ Flash(2026-11) 때 받은 질문 항목에 처음부터 답해 둔다. 녹화 �
 
 ---
 1. SCREEN RECORDING
-Attached to this submission (App Review attachment "review-demo.mp4"). It starts from launching the app and shows: browsing matches, standings and the community without logging in, Sign in with Apple, the first-login consent (Terms of Use, age 14+), writing a post and a comment, reporting a post, blocking its author and unblocking in My Page, and deleting the account.
+Attached to this submission (App Review attachment "review-demo.mp4", about 3 minutes; idle pauses are shortened). It starts from launching the app and shows: Sign in with Apple, deleting that account (My → 내 계정 → 계정 삭제), signing in again as a new user, setting a nickname, the Terms of Use with the required "age 14+" checkbox (the agree button stays disabled until it is checked), browsing the community and the squad, writing a post, reporting another user's post (reason sheet), blocking its author (their posts disappear), unblocking in My → 내 계정 → 차단한 사용자, and deleting the account again.
 
 2. PURPOSE AND AUDIENCE
 Poground is an unofficial fan app made by an individual K League fan for supporters of the Pohang club. It shows match schedules, results, standings and player records from data published by the K League, and gives fans a place to keep a record of the matches they attended and to share posts and photos with other fans. Audience: K League fans in Korea. Browsing is open to everyone; posting and commenting require login and age 14+.
