@@ -10,7 +10,7 @@ import * as WebBrowser from 'expo-web-browser'
 import { supabase } from '@/repositories/remote/supabase'
 import { codeFromCallback } from '@/hooks/auth/callbackUrl'
 import { exchangeInForeground } from '@/hooks/auth/exchange'
-import { APPLE_LOGIN_ENABLED, type SocialProvider } from '@/hooks/auth/providers'
+import type { SocialProvider } from '@/hooks/auth/providers'
 
 /**
  * 로그인 상태.
@@ -217,11 +217,9 @@ async function rememberAppleName(fullName: AppleAuthentication.AppleAuthenticati
 /**
  * 이 기기에서 애플 로그인을 쓸 수 있는지.
  *
- * 안드로이드와 옛 iOS 에는 없고, 유료 개발자 계정이 아니면 자격을 못 넣어 아예 못 쓴다
- * (APPLE_LOGIN_ENABLED 주석 참고).
+ * 안드로이드와 옛 iOS(13 미만)에는 없다.
  */
 export async function isAppleAvailable(): Promise<boolean> {
-  if (!APPLE_LOGIN_ENABLED) return false
   if (Platform.OS !== 'ios') return false
   return AppleAuthentication.isAvailableAsync()
 }

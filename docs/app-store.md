@@ -175,7 +175,7 @@ K리그,축구,포항,경기일정,순위,선수기록,직관,커뮤니티,팬,�
 | User Content | Other User Content | App Functionality | 예        | 아니오 |
 | Identifiers  | User ID            | App Functionality | 예        | 아니오 |
 
-- **Email Address** — 카카오·구글이 넘겨주는 계정 메일. 계정 구분과 같은 사람의 로그인 잇기에만 쓴다
+- **Email Address** — 카카오·애플·구글이 넘겨주는 계정 메일(애플은 가림 메일일 수 있다). 계정 구분과 같은 사람의 로그인 잇기에만 쓴다
 - **Name** — 소셜 프로필 이름(닉네임 기본값)과 이용자가 정한 닉네임·아이디
 - **Photos or Videos** — 게시글 사진(전체 공개면 다른 이용자에게 보인다), 팬카드 사진, 직접 넣은 선수 사진, 프로필
   이미지
@@ -199,9 +199,9 @@ K리그,축구,포항,경기일정,순위,선수기록,직관,커뮤니티,팬,�
 
 ## 제출 전 점검
 
-- [ ] 유료 Apple Developer Program 에 가입했다 — 무료 팀으로는 제출할 수 없다
-- [ ] 애플 로그인을 켰다(지침 4.8) — `app.json` 의 `./plugins/withoutAppleSignIn` 을 지우고
-      `hooks/auth/providers.ts` 의 `APPLE_LOGIN_ENABLED` 를 켠 뒤 prebuild
+- [x] 유료 Apple Developer Program 에 가입했다 — 팀 `M45QFAAT7S`
+- [x] 애플 로그인을 켰다(지침 4.8, 2026-11-09)
+- [ ] Supabase 대시보드 → Authentication → Providers → Apple 을 켜고 Client IDs 에 `com.darby.poground` 을 넣었다
 - [ ] 개인정보 처리방침과 이용약관을 웹에 올리고 주소를 App Store Connect 와 구글 OAuth 동의 화면에 넣었다
 - [ ] 심사용 구글 계정을 새로 만들고, 로그인해 약관 동의까지 마친 뒤 심사 메모에 적었다
 - [ ] 연령 등급 질문지에 답하고 나온 등급을 위에 적었다

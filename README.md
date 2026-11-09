@@ -44,7 +44,7 @@ React Native(Expo) 앱과 Supabase 백엔드(Postgres·Edge Functions)가 한 �
 
 **계정**
 
-- 카카오·구글 로그인, 닉네임·아이디·프로필 이미지, 연결된 로그인 잇기·끊기
+- 카카오·애플·구글 로그인, 닉네임·아이디·프로필 이미지, 연결된 로그인 잇기·끊기
 - 이용약관 동의, 앱 안 계정 삭제(댓글은 "탈퇴한 사용자의 댓글" 로 자리만 남긴다)
 - 테마 두 가지(홈 유니폼 빨강·검정 / 원정 유니폼 흰색·빨강), 기본은 기기 외관 설정을 따른다
 
@@ -124,13 +124,15 @@ npm run ios                 # 또는 npm run android
    `verify_jwt: false` 로 둔다 — 각자 안에서 인증을 확인한다.
 3. 함수 시크릿: `CRON_SECRET`, `SEASON_YEAR`, `CLUB_TEAM_ID`(기본 `K03`), `RESEND_API_KEY`.
 4. 크론이 함수를 부를 수 있게 Vault 에 `functions_url`·`cron_secret` 을 넣는다(0002 주석 참고).
-5. 인증 제공자(카카오·구글)와 Redirect URL(`poground://**`)을 Supabase 대시보드에서 켠다.
+5. 인증 제공자(카카오·애플·구글)와 Redirect URL(`poground://**`)을 Supabase 대시보드에서 켠다.
 
 ### 무료 Apple 개발자 계정으로 빌드할 때
 
-유료 회원만 쓸 수 있는 자격(애플 로그인, 푸시 알림)이 빌드를 막는다. `plugins/withoutAppleSignIn`,
-`plugins/withoutPushEntitlement` 가 prebuild 때 그 자격을 걷어낸다. 유료 가입 뒤에는 이 둘을 `app.json` 에서 지운다.
-`withoutPushEntitlement` 는 `expo-notifications` **앞에** 있어야 한다(설정 플러그인의 mod 는 역순으로 돈다).
+유료 회원만 쓸 수 있는 자격(애플 로그인, 푸시 알림)이 빌드를 막는다. 애플 로그인은 이제 켜져 있어서 무료 팀으로는
+빌드할 수 없다 — 무료 팀으로 돌려야 하면 애플 로그인 자격(`com.apple.developer.applesignin`)을 걷어내는 플러그인을
+`plugins/withoutPushEntitlement` 처럼 만들어 붙인다. 푸시 자격은 `plugins/withoutPushEntitlement` 가 prebuild 때
+걷어낸다(서버 푸시를 붙일 때 `app.json` 에서 지운다). 이 플러그인은 `expo-notifications` **앞에** 있어야 한다(설정
+플러그인의 mod 는 역순으로 돈다).
 
 ---
 

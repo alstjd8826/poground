@@ -9,13 +9,13 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "bundleIdentifier": "com.poground.app",
+      "bundleIdentifier": "com.darby.poground",
       "supportsTablet": false,
       "appleTeamId": "M45QFAAT7S",
       "infoPlist": {}
     },
     "android": {
-      "package": "com.poground.app",
+      "package": "com.darby.poground",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon/adaptive-foreground.png",
         "backgroundColor": "#FB342E"
@@ -52,7 +52,7 @@
       ],
       "expo-web-browser",
       "expo-image",
-      "./plugins/withoutAppleSignIn",
+      "expo-apple-authentication",
       "./plugins/withKoreanDisplayName",
       "expo-sharing",
       [

@@ -8,7 +8,7 @@ const { withEntitlementsPlist } = require('@expo/config-plugins')
  * 스스로 울리는 로컬 알림뿐이라 그 자격이 필요 없다.
  *
  * 유료 가입을 마치고 서버 푸시를 붙일 때 app.json 의 plugins 에서 이 줄을 지우고 prebuild 한다.
- * withoutAppleSignIn 과 같은 방식이다.
+ * (애플 로그인도 한때 같은 방식으로 자격을 걷어냈다가 2026-11-09 유료 팀으로 옮기며 되돌렸다.)
  */
 module.exports = function withoutPushEntitlement(config) {
   return withEntitlementsPlist(config, cfg => {
